@@ -247,7 +247,7 @@ server {
 	It serves federation over HTTP or HTTPS, depending on `matrix_nginx_proxy_https_enabled`.
 #}
 server {
-	{% if matrix_nginx_proxy_https_enabled %}
+	{% if matrix_nginx_proxy_https_federation_enabled %}
 		listen {{ matrix_nginx_proxy_proxy_matrix_federation_port }} ssl http2;
 		listen [::]:{{ matrix_nginx_proxy_proxy_matrix_federation_port }} ssl http2;
 	{% else %}
@@ -262,7 +262,7 @@ server {
 	gzip on;
 	gzip_types text/plain application/json;
 
-	{% if matrix_nginx_proxy_https_enabled %}
+	{% if matrix_nginx_proxy_https_federation_enabled %}
 		ssl_certificate {{ matrix_nginx_proxy_proxy_matrix_federation_api_ssl_certificate }};
 		ssl_certificate_key {{ matrix_nginx_proxy_proxy_matrix_federation_api_ssl_certificate_key }};
 

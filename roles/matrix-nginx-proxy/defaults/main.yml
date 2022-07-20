@@ -50,6 +50,7 @@ matrix_nginx_proxy_container_extra_arguments: []
 # - naturally, there's no HTTPS vhost
 # - services are served directly from the HTTP vhost
 matrix_nginx_proxy_https_enabled: true
+matrix_nginx_proxy_https_federation_enabled: true
 
 # Controls whether matrix-nginx-proxy trusts an upstream server's X-Forwarded-Proto header
 #
