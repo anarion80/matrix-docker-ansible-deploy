@@ -555,6 +555,9 @@ templates:
   # information about using custom templates.
   #
   #custom_template_directory: /path/to/custom/templates/
+  {% if matrix_synapse_templates_custom_template_directory %}
+  custom_template_directory: {{ matrix_synapse_templates_custom_template_directory | to_json }}
+  {% endif %}
 
 # List of rooms to exclude from sync responses. This is useful for server
 # administrators wishing to group users into a room without these users being able
@@ -2363,7 +2366,7 @@ email:
   # subjects. It defaults to 'Matrix'.
   #
   #app_name: my_branded_matrix_server
-  app_name: Matrix
+  app_name: {{ matrix_synapse_email_app_name | to_json }}
 
   # Uncomment the following to enable sending emails for messages that the user
   # has missed. Disabled by default.
@@ -2511,6 +2514,7 @@ password_providers:
   - module: "ldap_auth_provider.LdapAuthProvider"
     config:
       enabled: true
+      mode: {{ matrix_synapse_ext_password_provider_ldap_mode | string | to_json }}
       uri: {{ matrix_synapse_ext_password_provider_ldap_uri | string|to_json }}
       start_tls: {{ matrix_synapse_ext_password_provider_ldap_start_tls|to_json }}
       base: {{ matrix_synapse_ext_password_provider_ldap_base | string|to_json }}
